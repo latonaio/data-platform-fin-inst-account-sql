@@ -13,7 +13,7 @@ CREATE TABLE `data_platform_fin_inst_account_item_data`
     
     PRIMARY KEY (`FinInstCountry`, `FinInstNumber`, InternalBankCustomerID`, `InternalFinInstCustomerID`, `InternalFinInstAccountID`, `ValidityEndDate`, `ValidityStartDate`),
     
-    CONSTRAINT `DataPlatformFinInstAccountItemData_fk` FOREIGN KEY (`FinInstCountry`, `FinInstNumber`, InternalFinInstCustomerID`) REFERENCES `data_platform_fin_inst_account_header_data` (`FinInstCountry`, `FinInstNumber`, InternalFinInstCustomerID`)
+    CONSTRAINT `DataPlatformFinInstAccountItemData_fk` FOREIGN KEY (`FinInstCountry`, `FinInstNumber`, `InternalFinInstCustomerID`) REFERENCES `data_platform_fin_inst_account_header_data` (`FinInstCountry`, `FinInstNumber`, `InternalFinInstCustomerID`)
     
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
