@@ -1,13 +1,19 @@
-CREATE TABLE `data_platform_fin_inst_account_header_data`  -- 新規追加 
+CREATE TABLE `data_platform_fin_inst_account_header_data` 
 (
-    `FinInstCountry`            varchar(3) NOT NULL,          -- 新規追加
-    `FinInstNumber`             varchar(15) NOT NULL,         -- 新規追加
-    `InternalFinInstCustomerID` int(10) NOT NULL,             -- 新規追加
-    `ValidityEndDate`           varchar(80) NOT NULL,         -- 新規追加
-    `AccountBusinessPartner`    int(10) DEFAULT NULL,         -- 新規追加
-    `FinInstBusinessPartner`    int(10) DEFAULT NULL,         -- 新規追加
-    `ValidityStartDate`         varchar(80) DEFAULT NULL,     -- 新規追加
-    `IsMarkedForDeletion`       tinyint(1) DEFAULT NULL,      -- 新規追加
-    PRIMARY KEY (`FinInstCountry`, `FinInstNumber`, `InternalFinInstCustomerID`, `ValidityEndDate`)
+    `FinInstCountry`            varchar(3) NOT NULL,
+    `FinInstNumber`             varchar(15) NOT NULL,
+    `InternalFinInstCustomerID` int(12) NOT NULL,
+    `ValidityEndDate`           date NOT NULL,
+    `ValidityStartDate`         date NOT NULL,
+    `AccountBusinessPartner`    int(12) DEFAULT NULL,
+    `FinInstBusinessPartner`    int(12) DEFAULT NULL,
+    `IsMarkedForDeletion`       tinyint(1) DEFAULT NULL,
+    
+    PRIMARY KEY (`FinInstCountry`, `FinInstNumber`, `InternalFinInstCustomerID`, `ValidityEndDate`, `ValidityStartDate`),
+
+  CONSTRAINT `DataPlatformFinInstAccountHeaderData_fk` FOREIGN KEY (`FinInstCountry`, `FinInstNumber`) REFERENCES `data_platform_fin_inst_master_general_data` (`FinInstCountry`, `FinInstNumber`),
+  CONSTRAINT `DataPlatformFinInstAccountHeaderDataAccountBusinessPartner_fk` FOREIGN KEY (`AccountBusinessPartner`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+  CONSTRAINT `DataPlatformFinInstAccountHeaderDataFinInstBusinessPartner_fk` FOREIGN KEY (`FinInstBusinessPartner`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`)
+
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
