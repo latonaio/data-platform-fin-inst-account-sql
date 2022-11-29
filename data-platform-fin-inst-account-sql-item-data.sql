@@ -13,9 +13,9 @@ CREATE TABLE `data_platform_fin_inst_account_item_data`
     `FinInstAccount`            varchar(18) DEFAULT NULL,
     `IsMarkedForDeletion`       tinyint(1) DEFAULT NULL,
     
-    PRIMARY KEY (`FinInstCountry`, `FinInstCode`, `FinInstBranchCode`, `FinInstFullCode`, `InternalBankCustomerID`, `InternalFinInstCustomerID`, `InternalFinInstAccountID`, `ValidityEndDate`, `ValidityStartDate`),
+    PRIMARY KEY (`FinInstCountry`, `FinInstCode`, `InternalFinInstCustomerID`, `InternalFinInstAccountID`, `ValidityEndDate`, `ValidityStartDate`),
     
-    CONSTRAINT `DataPlatformFinInstAccountItemData_fk` FOREIGN KEY (`FinInstCountry`, `FinInstCode`, `FinInstBranchCode`, `FinInstFullCode`, `InternalFinInstCustomerID`) REFERENCES `data_platform_fin_inst_account_header_data` (`FinInstCountry`, `FinInstCode`, `FinInstBranchCode`, `FinInstFullCode`, `InternalFinInstCustomerID`)
+    CONSTRAINT `DataPlatformFinInstAccountItemData_fk` FOREIGN KEY (`FinInstCountry`, `FinInstCode`, `InternalFinInstCustomerID`) REFERENCES `data_platform_fin_inst_account_header_data` (`FinInstCountry`, `FinInstCode`, `InternalFinInstCustomerID`)
     
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
